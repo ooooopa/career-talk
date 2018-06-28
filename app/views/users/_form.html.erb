@@ -10,33 +10,41 @@
       </ul>
     </div>
   <% end %>
+  
+  <table>
+  <tr>
+    <td><%= form.label :name %></td>
+    <td><%= form.text_field :name, id: :user_name %></td>
+  </tr>
+  
+  <tr>
+    <td><%= form.label :email %></td>
+    <td><%= form.text_field :email, id: :user_email %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :user_name %>
-  </div>
+  <tr>
+    <td><%= form.label :password %></td>
+    <td><%= form.password_field :password %></td>
+  </tr>
+  
+  <tr>
+    <td><%= form.label :password_confirmation %></td>
+    <td><%= form.password_field :password_confirmation %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :user_email %>
-  </div>
+  <tr>
+    <td><%= form.label :icon %></td>
+    <td><%= image_tag(@user.image.url) if @user.image.url %><%= form.file_field :image, id: :feed_image %><%= form.hidden_field :image_cache %></td>
+  </tr>
 
-  <div class="field">
-    <%= form.label :password_digest %>
-    <%= form.text_field :password_digest, id: :user_password_digest %>
-  </div>
-
-  <div class="field">
-    <%= form.label :icon %>
-    <%= form.text_area :icon, id: :user_icon %>
-  </div>
-
-  <div class="field">
-    <%= form.label :profile %>
-    <%= form.text_area :profile, id: :user_profile %>
-  </div>
-
+  <tr>
+    <td><%= form.label :profile %></td>
+    <td><%= form.text_area :profile, id: :user_profile %></td>
+  </tr>
+  </table>
+  
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Sign in", {class:"btn btn-info"} %>
   </div>
+
 <% end %>

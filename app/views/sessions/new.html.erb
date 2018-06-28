@@ -1,2 +1,23 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<div class="container">
+    <div class="login">
+      <h1>ログインする</h1>
+      
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+      
+      <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+        <table>
+        <tr>
+          <td><%= f.label :email, {class:'top-font-color'}  %></td>
+          <td><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password, {class:'top-font-color'} %></td>
+          <td><%= f.password_field :password %></td>
+        </tr>
+        </table>
+        <%= f.submit "Log in", {class:"btn btn-info"} %>
+      <% end %>
+    </div>
+</div>

@@ -1,31 +1,29 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
-<h1>Topics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Topic</th>
-      <th>Title</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
+  <div class="col-md-7">
     <% @topics.each do |topic| %>
-      <tr>
-        <td><%= topic.topic %></td>
-        <td><%= topic.title %></td>
-        <td><%= topic.user_id %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% user_id = @user.find(topic.user_id) %>
+      <% name = user_id.name %>
+      <table class="table table-bordered">
+        <tr><td id="index-name"><%= name %></td></tr>
+        <tr><td class="index-td"><%= topic.title %></td></tr>
+        <tr><td class="index-td"><%= topic.topic %></td></tr>
+        <% if topic.user_id == current_user.id %>
+          <tr><td class="index-td" id="index-action"><%= link_to 'edit', edit_topic_path(topic.id) %> | <%= link_to 'delete', topic_path(topic.id), method: :delete %></td></tr>
+        <% else %>
+          <tr><td class="index-td" id="index-action"><%= link_to 'いいね！', favorites_path(topic_id: topic.id), method: :post %> | <%= link_to 'いいねを解除する', favorite_path(topic.id), method: :delete  %>
+          </td></tr>
+        <% end %>
+      </table>
     <% end %>
-  </tbody>
-</table>
+  </div>
 
-<br>
+  <div class="col-md-1">
+  </div>
+  
+  <div class="col-md-4">
+    <button type="button" class="btn btn-warning navbar-btn "><a href="/topics/new">トピックを投稿する</a></button>
+  </div>
 
-<%= link_to 'New Topic', new_topic_path %>
+</div>

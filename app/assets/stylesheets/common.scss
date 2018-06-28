@@ -1,0 +1,39 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin: 0px !important;
+  margin-bottom: 60px;
+  background-color:#F2F2F2 !important;
+}
+
+.body:before {
+  white-space: none !important;
+  font-family: none;
+  content: none !important;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color:#81D8D0;
+}
+
+.footer-text{
+  margin:20px 0;
+  text-align:center;
+  color:white;
+}
+
+.header-a:hover{
+  text-decoration: none;
+}
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
