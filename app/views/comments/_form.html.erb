@@ -14,6 +14,7 @@
   <div class="field">
     <%= form.label :comment %>
     <%= form.text_area :comment, :size=>"60x15", id: :comment_comment %>
+    <%= form.hidden_field :topic_id, :value => @topic.id %>
   </div>
 
   <div class="actions">

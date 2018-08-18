@@ -2,12 +2,19 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   root to: "topics#index"
-  resources :comments
+  
+  resources :comments do
+    member do
+      get:new
+    end
+  end
+  
   resources :topics do
     collection do
       post:search
     end
   end
+  
   resources :users
   
   resources :sessions, only:[:new, :create, :destroy]
