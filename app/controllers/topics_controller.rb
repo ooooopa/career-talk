@@ -11,6 +11,7 @@ class TopicsController < ApplicationController
   # GET /topics/1
   # GET /topics/1.json
   def show
+    @user = User.all
   end
 
   # GET /topics/new
@@ -52,11 +53,17 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.json
   def destroy
+    #@topic.destroy
+    #redirect_to topics_path    
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to topics_url, notice: 'Topic was successfully destroyed.' }
+      format.html { redirect_to topics_path, notice: 'Topic was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def search
+    
   end
 
   private
@@ -67,6 +74,6 @@ class TopicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
-      params.require(:topic).permit(:topic, :title, :user_id)
+      params.require(:topic).permit(:topic, :title)
     end
 end

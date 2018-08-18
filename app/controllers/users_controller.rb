@@ -10,6 +10,8 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @favorites_topics = @user.favorite_topic
+    @users = User.all
   end
 
   # GET /users/new

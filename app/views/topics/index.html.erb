@@ -1,29 +1,19 @@
 <div class="container">
 <p id="notice"><%= notice %></p>
 
-  <div class="col-md-7">
+  <div class="col-md-8">
+    <table class="table table-bordered">
     <% @topics.each do |topic| %>
       <% user_id = @user.find(topic.user_id) %>
       <% name = user_id.name %>
-      <table class="table table-bordered">
-        <tr><td id="index-name"><%= name %></td></tr>
-        <tr><td class="index-td"><%= topic.title %></td></tr>
-        <tr><td class="index-td"><%= topic.topic %></td></tr>
-        <% if topic.user_id == current_user.id %>
-          <tr><td class="index-td" id="index-action"><%= link_to 'edit', edit_topic_path(topic.id) %> | <%= link_to 'delete', topic_path(topic.id), method: :delete %></td></tr>
-        <% else %>
-          <tr><td class="index-td" id="index-action"><%= link_to 'いいね！', favorites_path(topic_id: topic.id), method: :post %> | <%= link_to 'いいねを解除する', favorite_path(topic.id), method: :delete  %>
-          </td></tr>
-        <% end %>
-      </table>
+      <tr><td id="index-name"><%= name %></td></tr>
+      <tr><td id="index-td"><a href="/topics/<%= topic.id %>" class="font-color"><%= topic.title %></a></td></tr>
     <% end %>
+    </table>
   </div>
 
-  <div class="col-md-1">
-  </div>
-  
   <div class="col-md-4">
-    <button type="button" class="btn btn-warning navbar-btn "><a href="/topics/new">トピックを投稿する</a></button>
+    <button type="button" class="btn navbar-btn "><a href="/topics/new" class="font-color">トピックを投稿する</a></button>
   </div>
 
 </div>

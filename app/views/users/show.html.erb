@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <h1>マイページ</h1>
+  
+  <div class="row">
+      
+  <table class="col-md-6">
+    <tr>
+      <td><strong>名前:</strong></td>
+      <td><%= @user.name %></td>
+    </tr>
+    
+    <tr>
+      <td><strong>メールアドレス:</strong></td>
+      <td><%= @user.email %></td>
+    </tr>
+  </table>
+  </div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
+  <%= link_to '編集', edit_user_path(@user), class:"btn btn-info col-md-offset-7" %>  
+  <%= link_to "Logout", session_path(current_user.id), method: :delete, class:"btn btn-info" %>
+  
+  <br>
+  
+  <h1>お気に入り</h1>
+  <% @favorites_topics.each do |fav| %>
+    <table class="table">
+        <tr><td id="index-name"><%= @users.find(fav.user_id).name %></td>
+        <tr><td id="index-td"><a href="/topics/<%= fav.id %>" class="font-color"><%= fav.title %></a></td></tr>
+    </table>
+  <% end %>
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Password digest:</strong>
-  <%= @user.password_digest %>
-</p>
-
-<p>
-  <strong>Icon:</strong>
-  <%= @user.icon %>
-</p>
-
-<p>
-  <strong>Profile:</strong>
-  <%= @user.profile %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+</div>

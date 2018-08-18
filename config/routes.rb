@@ -3,7 +3,11 @@ Rails.application.routes.draw do
 
   root to: "topics#index"
   resources :comments
-  resources :topics
+  resources :topics do
+    collection do
+      post:search
+    end
+  end
   resources :users
   
   resources :sessions, only:[:new, :create, :destroy]
